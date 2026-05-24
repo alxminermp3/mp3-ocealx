@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>heartfelt mixtape · custom mp3 player for you</title>
+    <title>heartfelt mixtape · for you</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -13,7 +13,6 @@
             box-sizing: border-box;
             font-family: 'Montserrat', sans-serif;
         }
-
         body {
             min-height: 100vh;
             background: linear-gradient(135deg, #0a0806, #1a120b, #0a0806);
@@ -22,7 +21,6 @@
             align-items: center;
             padding: 20px;
         }
-
         .player-container {
             width: 860px;
             max-width: 100%;
@@ -35,14 +33,12 @@
             color: #f5f5dc;
             border: 1px solid #000;
         }
-
         .player-main {
             display: flex;
             flex-wrap: wrap;
             padding: 20px;
             gap: 20px;
         }
-
         .player-left {
             flex: 1.2;
             min-width: 240px;
@@ -50,7 +46,6 @@
             flex-direction: column;
             gap: 20px;
         }
-
         .player-right {
             flex: 2;
             min-width: 260px;
@@ -62,7 +57,6 @@
             display: flex;
             flex-direction: column;
         }
-
         .header {
             background: linear-gradient(to bottom, #0a0806, #1a120b);
             padding: 16px 20px;
@@ -70,7 +64,6 @@
             border-bottom: 1px solid rgba(0,0,0,0.7);
             position: relative;
         }
-
         .header h1 {
             font-size: 1.7rem;
             letter-spacing: 2px;
@@ -78,12 +71,10 @@
             text-shadow: 0 0 10px rgba(169, 113, 66, 0.5);
             font-weight: 600;
         }
-
         .header p {
             font-size: 0.8rem;
             color: #d4a373;
         }
-
         .now-playing-indicator {
             position: absolute;
             top: 12px;
@@ -93,10 +84,8 @@
             border-radius: 40px;
             font-size: 0.7rem;
             font-weight: 500;
-            letter-spacing: 1px;
             backdrop-filter: blur(4px);
         }
-
         .album-art {
             width: 100%;
             aspect-ratio: 1 / 1;
@@ -106,10 +95,8 @@
             background: radial-gradient(circle, #2a1e12, #050302);
             box-shadow: 0 0 25px rgba(0,0,0,0.8);
             border: 2px solid rgba(0,0,0,0.6);
-            position: relative;
             overflow: hidden;
         }
-
         .album-art-inner {
             width: 100%;
             height: 100%;
@@ -122,16 +109,13 @@
             font-weight: 500;
             text-align: center;
             padding: 20px;
-            word-break: break-word;
         }
-
         .visualizer {
             background: rgba(0,0,0,0.4);
             border-radius: 40px;
             padding: 12px 8px;
             border: 1px solid rgba(169,113,66,0.3);
         }
-
         .bars {
             display: flex;
             align-items: flex-end;
@@ -139,21 +123,18 @@
             gap: 5px;
             height: 70px;
         }
-
         .bar {
             width: 6px;
             background: linear-gradient(to top, #8b5a2b, #e6b87e);
             border-radius: 6px;
             transition: height 0.08s ease;
         }
-
         .song-info {
             background: rgba(0,0,0,0.35);
             padding: 12px;
             border-radius: 20px;
             text-align: center;
         }
-
         .song-info h2 {
             font-size: 1.2rem;
             font-weight: 500;
@@ -162,12 +143,10 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-
         .song-info p {
             font-size: 0.85rem;
             color: #d4a373;
         }
-
         .progress-container {
             width: 100%;
             height: 6px;
@@ -176,21 +155,18 @@
             cursor: pointer;
             margin: 10px 0 5px;
         }
-
         .progress {
             height: 100%;
             width: 0%;
             background: linear-gradient(90deg, #b87c41, #e6b87e);
             border-radius: 10px;
         }
-
         .time {
             display: flex;
             justify-content: space-between;
             font-size: 0.75rem;
             color: #bc9a6b;
         }
-
         .controls {
             display: flex;
             justify-content: center;
@@ -198,7 +174,6 @@
             gap: 18px;
             margin: 10px 0;
         }
-
         .control-btn {
             background: linear-gradient(145deg, #0a0806, #1a120b);
             border: none;
@@ -211,7 +186,6 @@
             transition: 0.2s;
             font-size: 1.2rem;
         }
-
         .play-btn {
             width: 58px;
             height: 58px;
@@ -219,12 +193,10 @@
             font-size: 1.7rem;
             box-shadow: 0 0 12px rgba(169,113,66,0.5);
         }
-
         .control-btn:hover {
             transform: scale(1.05);
             background: #2c1e12;
         }
-
         .volume-container {
             display: flex;
             align-items: center;
@@ -232,7 +204,6 @@
             justify-content: center;
             margin: 8px 0 5px;
         }
-
         .volume-slider {
             width: 130px;
             -webkit-appearance: none;
@@ -240,7 +211,6 @@
             height: 4px;
             border-radius: 4px;
         }
-
         .volume-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
             width: 12px;
@@ -249,7 +219,6 @@
             border-radius: 50%;
             cursor: pointer;
         }
-
         .playlist-header {
             display: flex;
             justify-content: space-between;
@@ -258,13 +227,11 @@
             font-weight: 600;
             border-bottom: 1px solid #2c1f12;
         }
-
         .playlist-actions {
             display: flex;
             gap: 12px;
             align-items: center;
         }
-
         .upload-btn {
             background: #8b5a2b;
             border: none;
@@ -276,17 +243,14 @@
             cursor: pointer;
             transition: 0.2s;
         }
-
         .upload-btn:hover {
             background: #b87c41;
         }
-
         .playlist {
             flex: 1;
             overflow-y: auto;
             max-height: 380px;
         }
-
         .playlist-item {
             display: flex;
             align-items: center;
@@ -296,17 +260,14 @@
             gap: 12px;
             transition: 0.1s;
         }
-
         .playlist-item.active {
             background: rgba(139, 90, 43, 0.35);
             border-left: 3px solid #e6b87e;
         }
-
         .song-title-artist {
             flex: 1;
             overflow: hidden;
         }
-
         .song-title-artist .title {
             font-weight: 500;
             font-size: 0.9rem;
@@ -314,36 +275,24 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-
         .song-title-artist .artist {
             font-size: 0.7rem;
             color: #bc9a6b;
         }
-
-        .edit-song {
+        .edit-song, .remove-song {
             background: none;
             border: none;
-            color: #d4a373;
             cursor: pointer;
-            margin: 0 4px;
             font-size: 0.9rem;
         }
-
-        .remove-song {
-            background: none;
-            border: none;
-            color: #b35f2b;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .playlist-item .duration {
+        .edit-song { color: #d4a373; margin: 0 4px; }
+        .remove-song { color: #b35f2b; font-size: 1rem; }
+        .duration {
             font-size: 0.75rem;
             color: #a57447;
             width: 50px;
             text-align: right;
         }
-
         .footer {
             text-align: center;
             font-size: 0.7rem;
@@ -351,11 +300,6 @@
             color: #7a5a3a;
             border-top: 1px solid #000;
         }
-
-        .stat-item {
-            text-align: center;
-        }
-
         .player-stats {
             display: flex;
             justify-content: space-around;
@@ -364,7 +308,8 @@
             padding: 8px;
             margin-top: 4px;
         }
-
+        .stat-item { text-align: center; }
+        .stat-value { font-weight: 600; color: #e6d5b8; }
         .empty-playlist-msg {
             text-align: center;
             padding: 40px 20px;
@@ -377,7 +322,7 @@
 <div class="player-container">
     <div class="header">
         <h1>❤️ POPPYLIST · MIXTAPE</h1>
-        <p>made with love · your songs, your story</p>
+        <p>handpicked for you · 30 tracks</p>
         <div class="now-playing-indicator">♫ NOW PLAYING</div>
     </div>
 
@@ -385,21 +330,16 @@
         <div class="player-left">
             <div class="album-art">
                 <div class="album-art-inner" id="albumTextPlaceholder">
-                    🎵 heartfelt <br> collection
+                    🎵 for you<br>with love
                 </div>
             </div>
-
             <div class="visualizer">
-                <div class="bars" id="visualizerBars">
-                    <!-- 16 bars dynamic -->
-                </div>
+                <div class="bars" id="visualizerBars"></div>
             </div>
-
             <div class="song-info">
-                <h2 id="currentSongTitle">no song loaded</h2>
-                <p id="currentSongArtist">── add music ──</p>
+                <h2 id="currentSongTitle">select a song</h2>
+                <p id="currentSongArtist">── click any track ──</p>
             </div>
-
             <div class="progress-container" id="progressContainer">
                 <div class="progress" id="progressFill"></div>
             </div>
@@ -407,7 +347,6 @@
                 <span id="currentTime">0:00</span>
                 <span id="totalDuration">0:00</span>
             </div>
-
             <div class="controls">
                 <button class="control-btn" id="prevBtn"><i class="fas fa-step-backward"></i></button>
                 <button class="control-btn play-btn" id="playPauseBtn"><i class="fas fa-play"></i></button>
@@ -421,33 +360,70 @@
                 <input type="range" id="volumeSlider" min="0" max="100" value="75" class="volume-slider">
                 <i class="fas fa-volume-up"></i>
             </div>
-
             <div class="player-stats">
-                <div class="stat-item"><span class="stat-value" id="totalSongsCount">0</span><div class="stat-label">SONGS</div></div>
-                <div class="stat-item"><span class="stat-value">❤️</span><div class="stat-label">custom mix</div></div>
+                <div class="stat-item"><span class="stat-value" id="totalSongsCount">30</span><div class="stat-label">SONGS</div></div>
+                <div class="stat-item"><span class="stat-value">❤️</span><div class="stat-label">your mix</div></div>
             </div>
         </div>
 
         <div class="player-right">
             <div class="playlist-header">
-                <span>📻 YOUR PLAYLIST</span>
+                <span>📻 YOUR PLAYLIST (click to play)</span>
                 <div class="playlist-actions">
                     <input type="file" id="songFileInput" multiple accept="audio/mpeg,audio/mp3,audio/wav,audio/ogg" style="display: none;">
-                    <button class="upload-btn" id="addSongsBtn"><i class="fas fa-plus-circle"></i> Add songs</button>
+                    <button class="upload-btn" id="addSongsBtn"><i class="fas fa-plus-circle"></i> Add MP3 files</button>
                 </div>
             </div>
             <div class="playlist" id="playlistContainer">
-                <div class="empty-playlist-msg">✨ add MP3 files to build a personal gift ✨<br>click "Add songs" and choose your tracks</div>
+                <!-- songs will be injected here from the pre-defined list -->
             </div>
         </div>
     </div>
-    <div class="footer">♡ custom mixtape player · upload your own songs · edit title/artist with ✎</div>
+    <div class="footer">♡ custom mixtape · upload your own MP3 files to match each song · edit titles/artists with ✎</div>
     <audio id="audioPlayer" preload="metadata"></audio>
 </div>
 
 <script>
     (function() {
-        // ---------- DOM elements ----------
+        // ---------- Your complete song list (from X posts) ----------
+        const songList = [
+            { title: "altogether", artist: "duster", duration: "5:20" },
+            { title: "anhedonia", artist: "duster", duration: "3:15" },
+            { title: "aqua tofana", artist: "duster", duration: "3:42" },
+            { title: "black lace", artist: "duster", duration: "3:18" },
+            { title: "bye", artist: "starry cat", duration: "2:55" },
+            { title: "close to home", artist: "duster", duration: "2:45" },
+            { title: "cosmotransporter", artist: "duster", duration: "4:05" },
+            { title: "always forever", artist: "cults", duration: "3:50" },
+            { title: "diamond", artist: "duster", duration: "4:05" },
+            { title: "baking tapes", artist: "duster", duration: "2:30" },
+            { title: "new directions", artist: "duster", duration: "3:35" },
+            { title: "i just want to hold her", artist: "sign crushes motorist", duration: "2:38" },
+            { title: "i'm always here", artist: "sign crushes motorist", duration: "2:45" },
+            { title: "inside out", artist: "duster", duration: "3:20" },
+            { title: "isn't over", artist: "duster", duration: "3:12" },
+            { title: "junk shop", artist: "helvetia", duration: "3:25" },
+            { title: "liftoff in stereo", artist: "duster", duration: "4:45" },
+            { title: "like a movie", artist: "duster", duration: "4:22" },
+            { title: "me and the birds", artist: "duster", duration: "3:45" },
+            { title: "no feel", artist: "duster", duration: "3:08" },
+            { title: "perdido de amor (lost in love)", artist: "luiz bonfá", duration: "4:15" },
+            { title: "poltergeist", artist: "duster", duration: "3:40" },
+            { title: "quiet eyes", artist: "duster", duration: "2:55" },
+            { title: "sea, swallow me", artist: "cocteau twins", duration: "4:10" },
+            { title: "selfless", artist: "widowdusk", duration: "4:12" },
+            { title: "space trash", artist: "duster", duration: "3:55" },
+            { title: "possession (quiet)", artist: "starry cat", duration: "3:48" },
+            { title: "starting to fall", artist: "duster", duration: "3:00" },
+            { title: "the rodents' discussion", artist: "gavin m", duration: "3:28" },
+            { title: "wedding night", artist: "sign crushes motorist", duration: "2:50" },
+            { title: "Я тебя люблю", artist: "Где Фантом", duration: "3:15" },
+            { title: "Где-то далеко", artist: "Иосиф Кобзон", duration: "3:55" },
+            { title: "И на Марсе будут яблони цвести", artist: "Иосиф Кобзон", duration: "4:05" },
+            { title: "Милая моя", artist: "Юрий Визбор", duration: "3:10" }
+        ];
+
+        // DOM elements
         const audio = document.getElementById('audioPlayer');
         const playPauseBtn = document.getElementById('playPauseBtn');
         const playIcon = playPauseBtn.querySelector('i');
@@ -467,19 +443,18 @@
         const songFileInput = document.getElementById('songFileInput');
         const albumTextDiv = document.getElementById('albumTextPlaceholder');
 
-        // ---------- Data ----------
-        let playlist = [];      // each item: { id, title, artist, fileUrl, durationText, blobUrl? (objectURL), rawFile? }
+        // Player state
+        let playlist = [];        // will hold song objects with fileUrl (blob) after user adds MP3s
         let currentIndex = 0;
         let isPlaying = false;
         let shuffleMode = false;
-        let currentBlobUrl = null;
         let audioContext = null;
         let analyser = null;
         let sourceNode = null;
         let animationId = null;
         let barsArray = [];
 
-        // helper: format time mm:ss
+        // Helper functions
         function formatTime(secs) {
             if (isNaN(secs)) return "0:00";
             const minutes = Math.floor(secs / 60);
@@ -487,7 +462,6 @@
             return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
         }
 
-        // build visualizer bars
         function initBars() {
             const barsContainer = document.getElementById('visualizerBars');
             barsContainer.innerHTML = '';
@@ -500,76 +474,57 @@
             barsArray = document.querySelectorAll('.bar');
         }
 
-        // audio context + analyser setup (once after user interaction)
         function setupAudioContext() {
             if (audioContext && audioContext.state !== 'closed') return;
             const AudioCtx = window.AudioContext || window.webkitAudioContext;
             audioContext = new AudioCtx();
             analyser = audioContext.createAnalyser();
             analyser.fftSize = 256;
-            const bufferLength = analyser.frequencyBinCount;
-            const dataArray = new Uint8Array(bufferLength);
-            
-            // connect audio element once
-            if (sourceNode) {
-                try { sourceNode.disconnect(); } catch(e) {}
-            }
+            const dataArray = new Uint8Array(analyser.frequencyBinCount);
+            if (sourceNode) try { sourceNode.disconnect(); } catch(e) {}
             sourceNode = audioContext.createMediaElementSource(audio);
             sourceNode.connect(analyser);
             analyser.connect(audioContext.destination);
-            
-            function animateVisualizer() {
+            function animate() {
                 if (!analyser) return;
                 analyser.getByteFrequencyData(dataArray);
                 for (let i = 0; i < barsArray.length; i++) {
                     const val = dataArray[i % dataArray.length] || 0;
-                    let height = 8 + (val / 255) * 52;
+                    const height = 8 + (val / 255) * 52;
                     barsArray[i].style.height = `${Math.max(6, height)}px`;
-                    let intensity = 120 + val;
-                    barsArray[i].style.background = `linear-gradient(to top, #8b5a2b, rgb(${intensity}, ${100 + val/2}, 80))`;
+                    barsArray[i].style.background = `linear-gradient(to top, #8b5a2b, rgb(${120 + val}, ${100 + val/2}, 80))`;
                 }
-                animationId = requestAnimationFrame(animateVisualizer);
+                animationId = requestAnimationFrame(animate);
             }
             if (animationId) cancelAnimationFrame(animationId);
-            animateVisualizer();
+            animate();
         }
 
-        // resume audio context on first play
         function resumeAudioContext() {
-            if (audioContext && audioContext.state === 'suspended') {
-                audioContext.resume();
-            } else if (!audioContext) {
-                setupAudioContext();
-                audioContext.resume();
-            }
+            if (audioContext && audioContext.state === 'suspended') audioContext.resume();
+            else if (!audioContext) { setupAudioContext(); audioContext?.resume(); }
         }
 
-        // load track by index
         function loadTrack(index) {
             if (!playlist.length || index < 0 || index >= playlist.length) return false;
-            if (currentBlobUrl && currentBlobUrl !== playlist[currentIndex]?.fileUrl) {
-                URL.revokeObjectURL(currentBlobUrl);
-            }
             const track = playlist[index];
             currentIndex = index;
-            const newUrl = track.fileUrl;  // blob url from stored object
-            if (audio.src !== newUrl) {
-                audio.src = newUrl;
+            if (audio.src !== track.fileUrl) {
+                audio.src = track.fileUrl;
                 audio.load();
             }
-            currentSongTitleSpan.textContent = track.title || "Untitled";
-            currentSongArtistSpan.textContent = track.artist || "no artist";
-            albumTextDiv.innerHTML = `🎧 ${track.title || "track"}<br>🎶 ${track.artist || "♥"}`;
-            totalDurationSpan.textContent = track.durationText || "0:00";
+            currentSongTitleSpan.textContent = track.title;
+            currentSongArtistSpan.textContent = track.artist;
+            albumTextDiv.innerHTML = `🎧 ${track.title}<br>🎶 ${track.artist}`;
+            totalDurationSpan.textContent = track.duration || "0:00";
             progressFill.style.width = '0%';
             currentTimeSpan.textContent = "0:00";
-            updateActiveClassInPlaylist();
+            updateActiveClass();
             return true;
         }
 
-        function updateActiveClassInPlaylist() {
-            const items = document.querySelectorAll('.playlist-item');
-            items.forEach((item, idx) => {
+        function updateActiveClass() {
+            document.querySelectorAll('.playlist-item').forEach((item, idx) => {
                 if (idx === currentIndex) item.classList.add('active');
                 else item.classList.remove('active');
             });
@@ -583,9 +538,7 @@
                 isPlaying = true;
                 playIcon.classList.remove('fa-play');
                 playIcon.classList.add('fa-pause');
-            } catch (err) {
-                console.warn("play error", err);
-            }
+            } catch(e) { console.warn(e); }
         }
 
         function pauseCurrent() {
@@ -605,9 +558,8 @@
             if (!playlist.length) return;
             let newIndex;
             if (shuffleMode) {
-                let rand = Math.floor(Math.random() * playlist.length);
-                while (rand === currentIndex && playlist.length > 1) rand = Math.floor(Math.random() * playlist.length);
-                newIndex = rand;
+                do { newIndex = Math.floor(Math.random() * playlist.length); }
+                while (newIndex === currentIndex && playlist.length > 1);
             } else {
                 newIndex = (currentIndex + 1) % playlist.length;
             }
@@ -641,40 +593,42 @@
 
         function updateVolume() { audio.volume = volumeSlider.value / 100; }
 
-        // render playlist UI from array
+        // Render playlist from the `playlist` array (with fileUrl or placeholder)
         function renderPlaylist() {
             playlistDiv.innerHTML = '';
             if (playlist.length === 0) {
-                playlistDiv.innerHTML = '<div class="empty-playlist-msg">🎵 add MP3 files to build a heartfelt mixtape 🎵<br>click "Add songs" and choose your tracks</div>';
+                playlistDiv.innerHTML = '<div class="empty-playlist-msg">🎵 click "Add MP3 files" and select your downloaded songs 🎵<br>match each file to the titles below</div>';
                 totalSongsCountSpan.innerText = '0';
-                currentSongTitleSpan.textContent = 'no songs';
-                currentSongArtistSpan.textContent = '── add music ──';
                 return;
             }
             totalSongsCountSpan.innerText = playlist.length;
             playlist.forEach((track, idx) => {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = `playlist-item ${idx === currentIndex ? 'active' : ''}`;
-                itemDiv.innerHTML = `
+                const item = document.createElement('div');
+                item.className = `playlist-item ${idx === currentIndex ? 'active' : ''}`;
+                item.innerHTML = `
                     <div class="song-title-artist">
-                        <div class="title">${escapeHtml(track.title || 'untitled')}</div>
-                        <div class="artist">${escapeHtml(track.artist || 'unknown')}</div>
+                        <div class="title">${escapeHtml(track.title)}</div>
+                        <div class="artist">${escapeHtml(track.artist)}</div>
                     </div>
-                    <div class="duration">${track.durationText || '--:--'}</div>
+                    <div class="duration">${track.duration || '--:--'}</div>
                     <button class="edit-song" data-idx="${idx}" title="edit title/artist"><i class="fas fa-pen"></i></button>
                     <button class="remove-song" data-idx="${idx}" title="remove from playlist"><i class="fas fa-trash-alt"></i></button>
                 `;
-                itemDiv.addEventListener('click', (e) => {
-                    if (e.target.classList.contains('edit-song') || e.target.classList.contains('remove-song') || e.target.closest('.edit-song') || e.target.closest('.remove-song')) return;
-                    loadTrack(idx);
-                    if (!isPlaying) playCurrent(); else playCurrent();
+                item.addEventListener('click', (e) => {
+                    if (e.target.closest('.edit-song') || e.target.closest('.remove-song')) return;
+                    if (track.fileUrl && track.fileUrl.startsWith('blob:')) {
+                        loadTrack(idx);
+                        if (!isPlaying) playCurrent(); else playCurrent();
+                    } else {
+                        alert(`🎵 Please add the MP3 file for "${track.title}" first.\nClick "Add MP3 files" and select the correct audio file.`);
+                    }
                 });
-                playlistDiv.appendChild(itemDiv);
+                playlistDiv.appendChild(item);
             });
-            attachPlaylistItemEvents();
+            attachItemEvents();
         }
 
-        function attachPlaylistItemEvents() {
+        function attachItemEvents() {
             document.querySelectorAll('.edit-song').forEach(btn => {
                 btn.removeEventListener('click', handleEdit);
                 btn.addEventListener('click', handleEdit);
@@ -697,109 +651,105 @@
             if (currentIndex === idx) {
                 currentSongTitleSpan.textContent = playlist[idx].title;
                 currentSongArtistSpan.textContent = playlist[idx].artist;
-                albumTextDiv.innerHTML = `🎧 ${playlist[idx].title}<br>🎶 ${playlist[idx].artist || "♥"}`;
+                albumTextDiv.innerHTML = `🎧 ${playlist[idx].title}<br>🎶 ${playlist[idx].artist}`;
             }
         }
 
         function handleRemove(e) {
             e.stopPropagation();
             const idx = parseInt(e.currentTarget.getAttribute('data-idx'));
-            if (idx === currentIndex) {
-                const wasPlaying = isPlaying;
-                if (wasPlaying) pauseCurrent();
-                // revoke blob url
-                if (playlist[idx] && playlist[idx].fileUrl && playlist[idx].fileUrl.startsWith('blob:')) {
-                    URL.revokeObjectURL(playlist[idx].fileUrl);
-                }
-                playlist.splice(idx, 1);
-                if (playlist.length === 0) {
-                    currentIndex = 0;
-                    audio.src = '';
-                    currentSongTitleSpan.textContent = 'no songs';
-                    currentSongArtistSpan.textContent = 'add music';
-                    albumTextDiv.innerHTML = '🎵❤️ add songs';
-                } else {
-                    let newIdx = idx >= playlist.length ? playlist.length - 1 : idx;
-                    currentIndex = newIdx;
-                    loadTrack(currentIndex);
-                    if (wasPlaying) playCurrent();
-                }
+            if (playlist[idx].fileUrl && playlist[idx].fileUrl.startsWith('blob:')) {
+                URL.revokeObjectURL(playlist[idx].fileUrl);
+            }
+            const wasPlaying = isPlaying && currentIndex === idx;
+            if (wasPlaying) pauseCurrent();
+            playlist.splice(idx, 1);
+            if (playlist.length === 0) {
+                currentIndex = 0;
+                audio.src = '';
+                currentSongTitleSpan.textContent = 'no songs';
+                currentSongArtistSpan.textContent = 'add MP3 files';
+                albumTextDiv.innerHTML = '🎵❤️ add music';
             } else {
-                if (playlist[idx] && playlist[idx].fileUrl && playlist[idx].fileUrl.startsWith('blob:')) {
-                    URL.revokeObjectURL(playlist[idx].fileUrl);
-                }
-                playlist.splice(idx, 1);
-                if (currentIndex > idx) currentIndex--;
-                if (playlist.length === 0) {
-                    audio.src = '';
-                    currentSongTitleSpan.textContent = 'no songs';
-                } else {
-                    loadTrack(currentIndex);
-                }
+                if (currentIndex >= idx) currentIndex = Math.max(0, currentIndex - 1);
+                loadTrack(currentIndex);
+                if (wasPlaying) playCurrent();
             }
             renderPlaylist();
-            if (playlist.length === 0) totalSongsCountSpan.innerText = '0';
         }
 
-        function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+        function escapeHtml(str) {
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
 
-        // add new mp3 files
+        // When user adds MP3 files, match them to the existing song list by order or by filename
+        // We'll simply add the files in the order they are selected, matching the current playlist order.
+        // If the user selects exactly N files, we assign each to the corresponding song slot.
+        // If fewer files, only those slots get audio; others remain placeholders.
         function addSongsFromFiles(files) {
-            if (!files.length) return;
-            for (let file of files) {
-                if (!file.type.includes('audio')) continue;
-                const blobUrl = URL.createObjectURL(file);
-                let baseName = file.name.replace(/\.(mp3|wav|ogg|m4a)$/i, '');
-                const tempTrack = {
-                    id: Date.now() + Math.random(),
-                    title: baseName,
-                    artist: "loved one",
-                    fileUrl: blobUrl,
-                    durationText: "0:00",
-                    rawFile: file
-                };
-                playlist.push(tempTrack);
-                // load metadata duration async
-                const tempAudio = new Audio();
-                tempAudio.preload = 'metadata';
-                tempAudio.src = blobUrl;
-                tempAudio.addEventListener('loadedmetadata', () => {
-                    const dur = tempAudio.duration;
-                    const durText = formatTime(dur);
-                    const trackObj = playlist.find(t => t.fileUrl === blobUrl);
-                    if (trackObj) trackObj.durationText = durText;
-                    renderPlaylist();
-                    if (playlist.length > 0 && currentIndex === 0 && !audio.src) {
-                        loadTrack(0);
+            if (!files.length || !playlist.length) return;
+            // assign files in order to playlist entries that don't already have a blob
+            let assignIndex = 0;
+            for (let i = 0; i < playlist.length && assignIndex < files.length; i++) {
+                if (!playlist[i].fileUrl || !playlist[i].fileUrl.startsWith('blob:')) {
+                    const file = files[assignIndex];
+                    if (file.type.includes('audio')) {
+                        if (playlist[i].fileUrl && playlist[i].fileUrl.startsWith('blob:')) URL.revokeObjectURL(playlist[i].fileUrl);
+                        const blobUrl = URL.createObjectURL(file);
+                        playlist[i].fileUrl = blobUrl;
+                        // try to get duration from metadata
+                        const tempAudio = new Audio();
+                        tempAudio.src = blobUrl;
+                        tempAudio.addEventListener('loadedmetadata', () => {
+                            if (tempAudio.duration && isFinite(tempAudio.duration)) {
+                                playlist[i].duration = formatTime(tempAudio.duration);
+                                renderPlaylist();
+                            }
+                        });
+                        assignIndex++;
                     }
-                });
-            }
-            if (playlist.length && !audio.src) {
-                loadTrack(0);
+                }
             }
             renderPlaylist();
-            if (playlist.length === 1 && !isPlaying) {
-                // auto load first track
+            if (playlist.length && !audio.src && playlist[0].fileUrl) {
                 loadTrack(0);
             }
         }
 
-        // shuffle toggle
+        // Initialize the playlist with song titles/artists (no fileUrl yet)
+        function initPlaylistFromList() {
+            playlist = songList.map(song => ({
+                title: song.title,
+                artist: song.artist,
+                duration: song.duration,
+                fileUrl: null   // no audio yet; user will add
+            }));
+            totalSongsCountSpan.innerText = playlist.length;
+            renderPlaylist();
+            currentSongTitleSpan.textContent = "select a song";
+            currentSongArtistSpan.textContent = "click any track, then add MP3";
+        }
+
+        // Shuffle toggle
         function toggleShuffle() {
             shuffleMode = !shuffleMode;
-            if (shuffleMode) shuffleBtn.style.boxShadow = "0 0 8px #d4a373";
-            else shuffleBtn.style.boxShadow = "";
+            shuffleBtn.style.boxShadow = shuffleMode ? "0 0 8px #d4a373" : "";
         }
 
-        // event binding & initial
-        function initEventListeners() {
+        // Event listeners
+        function initEvents() {
             playPauseBtn.addEventListener('click', togglePlayPause);
             prevBtn.addEventListener('click', prevTrack);
             nextBtn.addEventListener('click', nextTrack);
             shuffleBtn.addEventListener('click', toggleShuffle);
             volumeSlider.addEventListener('input', updateVolume);
             audio.addEventListener('timeupdate', updateProgress);
-            audio.addEventListener('ended', () => { nextTrack(); });
+            audio.addEventListener('ended', nextTrack);
             progressContainer.addEventListener('click', setProgress);
             audio.addEventListener('play', () => {
                 isPlaying = true;
@@ -819,22 +769,22 @@
             });
         }
 
-        function startIdleBars() {
-            if (barsArray.length === 0) return;
-            function idleAnim() {
+        function idleBars() {
+            function animateIdle() {
                 if (!audio.paused || !barsArray.length) return;
                 for (let i = 0; i < barsArray.length; i++) {
-                    let h = 8 + Math.sin(Date.now() / 350 + i) * 14;
+                    const h = 8 + Math.sin(Date.now() / 350 + i) * 14;
                     barsArray[i].style.height = `${Math.max(6, h)}px`;
                 }
-                requestAnimationFrame(idleAnim);
+                requestAnimationFrame(animateIdle);
             }
-            idleAnim();
+            animateIdle();
         }
 
-        function initialize() {
+        function start() {
             initBars();
-            initEventListeners();
+            initEvents();
+            initPlaylistFromList();
             updateVolume();
             if (!audioContext) {
                 document.body.addEventListener('click', function initCtx() {
@@ -842,15 +792,9 @@
                     else if (!audioContext) setupAudioContext();
                 }, { once: true });
             }
-            startIdleBars();
-            renderPlaylist();
-            // add sample instruction
-            if (playlist.length === 0) {
-                currentSongTitleSpan.textContent = "💝 add your music";
-                currentSongArtistSpan.textContent = "click + Add songs";
-            }
+            idleBars();
         }
-        initialize();
+        start();
     })();
 </script>
 </body>
