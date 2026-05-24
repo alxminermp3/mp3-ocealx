@@ -505,6 +505,20 @@
             else if (!audioContext) { setupAudioContext(); audioContext?.resume(); }
         }
 
+        // ---------- Media Session API (lock screen controls) ----------
+        function updateMediaSession() {
+            if (!('mediaSession' in navigator)) return;
+            if (!playlist.length || !playlist[currentIndex]) return;
+            const track = playlist[currentIndex];
+            navigator.mediaSession.metadata = new MediaMetadata({
+                title: track.title,
+                artist: track.artist,
+                album: 'Heart Collection'
+            });
+        }
+
+        // Wrap the original loadTrack to update media session
+        const originalLoadTrack = loadTrack;
         function loadTrack(index) {
             if (!playlist.length || index < 0 || index >= playlist.length) return false;
             const track = playlist[index];
@@ -520,6 +534,7 @@
             progressFill.style.width = '0%';
             currentTimeSpan.textContent = "0:00";
             updateActiveClass();
+            updateMediaSession();
             return true;
         }
 
@@ -538,6 +553,7 @@
                 isPlaying = true;
                 playIcon.classList.remove('fa-play');
                 playIcon.classList.add('fa-pause');
+                updateMediaSession();
             } catch(e) { console.warn(e); }
         }
 
@@ -652,6 +668,7 @@
                 currentSongTitleSpan.textContent = playlist[idx].title;
                 currentSongArtistSpan.textContent = playlist[idx].artist;
                 albumTextDiv.innerHTML = `🎧 ${playlist[idx].title}<br>🎶 ${playlist[idx].artist}`;
+                updateMediaSession();
             }
         }
 
@@ -670,6 +687,7 @@
                 currentSongTitleSpan.textContent = 'no songs';
                 currentSongArtistSpan.textContent = 'add MP3 files';
                 albumTextDiv.innerHTML = '🎵❤️ add music';
+                if ('mediaSession' in navigator) navigator.mediaSession.metadata = null;
             } else {
                 if (currentIndex >= idx) currentIndex = Math.max(0, currentIndex - 1);
                 loadTrack(currentIndex);
@@ -688,12 +706,8 @@
         }
 
         // When user adds MP3 files, match them to the existing song list by order or by filename
-        // We'll simply add the files in the order they are selected, matching the current playlist order.
-        // If the user selects exactly N files, we assign each to the corresponding song slot.
-        // If fewer files, only those slots get audio; others remain placeholders.
         function addSongsFromFiles(files) {
             if (!files.length || !playlist.length) return;
-            // assign files in order to playlist entries that don't already have a blob
             let assignIndex = 0;
             for (let i = 0; i < playlist.length && assignIndex < files.length; i++) {
                 if (!playlist[i].fileUrl || !playlist[i].fileUrl.startsWith('blob:')) {
@@ -702,7 +716,6 @@
                         if (playlist[i].fileUrl && playlist[i].fileUrl.startsWith('blob:')) URL.revokeObjectURL(playlist[i].fileUrl);
                         const blobUrl = URL.createObjectURL(file);
                         playlist[i].fileUrl = blobUrl;
-                        // try to get duration from metadata
                         const tempAudio = new Audio();
                         tempAudio.src = blobUrl;
                         tempAudio.addEventListener('loadedmetadata', () => {
@@ -727,7 +740,7 @@
                 title: song.title,
                 artist: song.artist,
                 duration: song.duration,
-                fileUrl: null   // no audio yet; user will add
+                fileUrl: null
             }));
             totalSongsCountSpan.innerText = playlist.length;
             renderPlaylist();
@@ -735,7 +748,6 @@
             currentSongArtistSpan.textContent = "click any track, then add MP3";
         }
 
-        // Shuffle toggle
         function toggleShuffle() {
             shuffleMode = !shuffleMode;
             shuffleBtn.style.boxShadow = shuffleMode ? "0 0 8px #d4a373" : "";
@@ -756,6 +768,7 @@
                 playIcon.classList.remove('fa-play');
                 playIcon.classList.add('fa-pause');
                 resumeAudioContext();
+                updateMediaSession();
             });
             audio.addEventListener('pause', () => {
                 isPlaying = false;
@@ -767,6 +780,14 @@
                 if (e.target.files.length) addSongsFromFiles(Array.from(e.target.files));
                 songFileInput.value = '';
             });
+
+            // Register media session action handlers
+            if ('mediaSession' in navigator) {
+                navigator.mediaSession.setActionHandler('play', () => playCurrent());
+                navigator.mediaSession.setActionHandler('pause', () => pauseCurrent());
+                navigator.mediaSession.setActionHandler('previoustrack', () => prevTrack());
+                navigator.mediaSession.setActionHandler('nexttrack', () => nextTrack());
+            }
         }
 
         function idleBars() {
