@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Poppylist · instant mixtape</title>
+    <title>Poppylist · mixtape</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="manifest" href="manifest.json">
@@ -107,47 +107,50 @@
             <div class="playlist" id="playlistContainer"></div>
         </div>
     </div>
-    <div class="footer">♡ custom mixtape · songs load instantly from GitHub</div>
+    <div class="footer">♡ custom mixtape · Click "Add MP3 files" and select your downloaded songs (they will match the titles in order).</div>
     <audio id="audioPlayer" preload="metadata"></audio>
 </div>
 
 <script>
     (function() {
-        const songList = [
+        // ---------- SONG METADATA ----------
+        // The first song (altogether) now includes a direct Google Drive link.
+        // All other songs have no URL – they can be added via the "Add MP3 files" button.
+        const songMetadata = [
             { title: "altogether", artist: "duster", duration: "5:20", url: "https://drive.usercontent.google.com/download?id=1_7PnxT_CjH0fVDILFGAk__LWVkMVw8CC&export=download" },
-            { title: "anhedonia", artist: "duster", duration: "3:15", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/anhedonia.mp3" },
-            { title: "aqua tofana", artist: "duster", duration: "3:42", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/aquatofana.mp3" },
-            { title: "black lace", artist: "duster", duration: "3:18", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/blacklace.mp3" },
-            { title: "bye", artist: "starry cat", duration: "2:55", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/bye.mp3" },
-            { title: "close to home", artist: "duster", duration: "2:45", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/closetohome.mp3" },
-            { title: "cosmotransporter", artist: "duster", duration: "4:05", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/cosmotransporter.mp3" },
-            { title: "always forever", artist: "cults", duration: "3:50", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/alwaysforever.mp3" },
-            { title: "diamond", artist: "duster", duration: "4:05", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/diamond.mp3" },
-            { title: "baking tapes", artist: "duster", duration: "2:30", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/bakingtapes.mp3" },
-            { title: "new directions", artist: "duster", duration: "3:35", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/newdirections.mp3" },
-            { title: "i just want to hold her", artist: "sign crushes motorist", duration: "2:38", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/ijustwantholdher.mp3" },
-            { title: "i'm always here", artist: "sign crushes motorist", duration: "2:45", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/imalwayshere.mp3" },
-            { title: "inside out", artist: "duster", duration: "3:20", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/insideout.mp3" },
-            { title: "isn't over", artist: "duster", duration: "3:12", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/isntover.mp3" },
-            { title: "junk shop", artist: "helvetia", duration: "3:25", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/junkshop.mp3" },
-            { title: "liftoff in stereo", artist: "duster", duration: "4:45", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/liftoffinstereo.mp3" },
-            { title: "like a movie", artist: "duster", duration: "4:22", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/likeamovie.mp3" },
-            { title: "me and the birds", artist: "duster", duration: "3:45", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/meandthebirds.mp3" },
-            { title: "no feel", artist: "duster", duration: "3:08", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/nofeel.mp3" },
-            { title: "perdido de amor (lost in love)", artist: "luiz bonfá", duration: "4:15", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/perdidodeamor.mp3" },
-            { title: "poltergeist", artist: "duster", duration: "3:40", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/poltergeist.mp3" },
-            { title: "quiet eyes", artist: "duster", duration: "2:55", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/quieteyes.mp3" },
-            { title: "sea, swallow me", artist: "cocteau twins", duration: "4:10", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/seaswallowme.mp3" },
-            { title: "selfless", artist: "widowdusk", duration: "4:12", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/selfless.mp3" },
-            { title: "space trash", artist: "duster", duration: "3:55", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/spacetrash.mp3" },
-            { title: "possession (quiet)", artist: "starry cat", duration: "3:48", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/possessionquiet.mp3" },
-            { title: "starting to fall", artist: "duster", duration: "3:00", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/startingtofall.mp3" },
-            { title: "the rodents' discussion", artist: "gavin m", duration: "3:28", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/rodentsdiscussion.mp3" },
-            { title: "wedding night", artist: "sign crushes motorist", duration: "2:50", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/weddingnight.mp3" },
-            { title: "Я тебя люблю", artist: "Где Фантом", duration: "3:15", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/yatebyalyublyu.mp3" },
-            { title: "Где-то далеко", artist: "Иосиф Кобзон", duration: "3:55", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/gdetodaleko.mp3" },
-            { title: "И на Марсе будут яблони цвести", artist: "Иосиф Кобзон", duration: "4:05", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/inamarse.mp3" },
-            { title: "Милая моя", artist: "Юрий Визбор", duration: "3:10", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/milayamoya.mp3" }
+            { title: "anhedonia", artist: "duster", duration: "3:15" },
+            { title: "aqua tofana", artist: "duster", duration: "3:42" },
+            { title: "black lace", artist: "duster", duration: "3:18" },
+            { title: "bye", artist: "starry cat", duration: "2:55" },
+            { title: "close to home", artist: "duster", duration: "2:45" },
+            { title: "cosmotransporter", artist: "duster", duration: "4:05" },
+            { title: "always forever", artist: "cults", duration: "3:50" },
+            { title: "diamond", artist: "duster", duration: "4:05" },
+            { title: "baking tapes", artist: "duster", duration: "2:30" },
+            { title: "new directions", artist: "duster", duration: "3:35" },
+            { title: "i just want to hold her", artist: "sign crushes motorist", duration: "2:38" },
+            { title: "i'm always here", artist: "sign crushes motorist", duration: "2:45" },
+            { title: "inside out", artist: "duster", duration: "3:20" },
+            { title: "isn't over", artist: "duster", duration: "3:12" },
+            { title: "junk shop", artist: "helvetia", duration: "3:25" },
+            { title: "liftoff in stereo", artist: "duster", duration: "4:45" },
+            { title: "like a movie", artist: "duster", duration: "4:22" },
+            { title: "me and the birds", artist: "duster", duration: "3:45" },
+            { title: "no feel", artist: "duster", duration: "3:08" },
+            { title: "perdido de amor (lost in love)", artist: "luiz bonfá", duration: "4:15" },
+            { title: "poltergeist", artist: "duster", duration: "3:40" },
+            { title: "quiet eyes", artist: "duster", duration: "2:55" },
+            { title: "sea, swallow me", artist: "cocteau twins", duration: "4:10" },
+            { title: "selfless", artist: "widowdusk", duration: "4:12" },
+            { title: "space trash", artist: "duster", duration: "3:55" },
+            { title: "possession (quiet)", artist: "starry cat", duration: "3:48" },
+            { title: "starting to fall", artist: "duster", duration: "3:00" },
+            { title: "the rodents' discussion", artist: "gavin m", duration: "3:28" },
+            { title: "wedding night", artist: "sign crushes motorist", duration: "2:50" },
+            { title: "Я тебя люблю", artist: "Где Фантом", duration: "3:15" },
+            { title: "Где-то далеко", artist: "Иосиф Кобзон", duration: "3:55" },
+            { title: "И на Марсе будут яблони цвести", artist: "Иосиф Кобзон", duration: "4:05" },
+            { title: "Милая моя", artist: "Юрий Визбор", duration: "3:10" }
         ];
 
         // DOM elements
@@ -270,10 +273,13 @@
         }
 
         async function playCurrent() {
-            if (!playlist.length || !playlist[currentIndex]?.fileUrl) {
-                if (playlist[currentIndex] && !playlist[currentIndex].fileUrl) {
-                    alert(`No audio URL for "${playlist[currentIndex].title}". Please check the song list.`);
-                }
+            if (!playlist.length) {
+                alert("No songs in playlist. Click 'Add MP3 files' and select your music.");
+                return;
+            }
+            const track = playlist[currentIndex];
+            if (!track.fileUrl) {
+                alert(`No audio file for "${track.title}". Click 'Add MP3 files' and select your MP3s.`);
                 return;
             }
             resumeAudioContext();
@@ -283,7 +289,10 @@
                 playIcon.classList.remove('fa-play');
                 playIcon.classList.add('fa-pause');
                 updateMediaSession();
-            } catch(e) { console.warn(e); }
+            } catch(e) {
+                console.warn(e);
+                alert("Playback failed. Make sure you have selected valid MP3 files.");
+            }
         }
 
         function pauseCurrent() {
@@ -341,7 +350,7 @@
         function renderPlaylist() {
             playlistDiv.innerHTML = '';
             if (playlist.length === 0) {
-                playlistDiv.innerHTML = '<div class="empty-playlist-msg">🎵 No songs loaded</div>';
+                playlistDiv.innerHTML = '<div class="empty-playlist-msg">✨ Click "Add MP3 files" and select your downloaded songs ✨<br>The titles will match automatically in order.</div>';
                 totalSongsCountSpan.innerText = '0';
                 return;
             }
@@ -360,11 +369,11 @@
                 `;
                 item.addEventListener('click', (e) => {
                     if (e.target.closest('.edit-song') || e.target.closest('.remove-song')) return;
-                    if (track.fileUrl && (track.fileUrl.startsWith('http') || track.fileUrl.startsWith('blob:'))) {
+                    if (track.fileUrl) {
                         loadTrack(idx);
                         if (!isPlaying) playCurrent(); else playCurrent();
                     } else {
-                        alert(`🎵 No playable URL for "${track.title}". Please check the song list.`);
+                        alert(`🎵 No audio file for "${track.title}". Click "Add MP3 files" to assign music.`);
                     }
                 });
                 playlistDiv.appendChild(item);
@@ -403,6 +412,9 @@
         function handleRemove(e) {
             e.stopPropagation();
             const idx = parseInt(e.currentTarget.getAttribute('data-idx'));
+            if (playlist[idx].fileUrl && playlist[idx].fileUrl.startsWith('blob:')) {
+                URL.revokeObjectURL(playlist[idx].fileUrl);
+            }
             const wasPlaying = isPlaying && currentIndex === idx;
             if (wasPlaying) pauseCurrent();
             playlist.splice(idx, 1);
@@ -430,23 +442,34 @@
             });
         }
 
-        // Optional manual file upload (kept as fallback)
+        // Add MP3 files from user's device
         function addSongsFromFiles(files) {
-            if (!files.length || !playlist.length) return;
+            if (!files.length) return;
+            // Create playlist from metadata if empty, or reuse existing
+            if (playlist.length === 0) {
+                playlist = songMetadata.map(song => ({
+                    title: song.title,
+                    artist: song.artist,
+                    duration: song.duration,
+                    fileUrl: song.url || null   // pre-assign URL if exists (e.g., for "altogether")
+                }));
+            }
             let assignIndex = 0;
             for (let i = 0; i < playlist.length && assignIndex < files.length; i++) {
-                if (!playlist[i].fileUrl || !playlist[i].fileUrl.startsWith('http')) {
+                if (!playlist[i].fileUrl) {
                     const file = files[assignIndex];
                     if (file.type.includes('audio')) {
                         if (playlist[i].fileUrl && playlist[i].fileUrl.startsWith('blob:')) URL.revokeObjectURL(playlist[i].fileUrl);
                         const blobUrl = URL.createObjectURL(file);
                         playlist[i].fileUrl = blobUrl;
+                        // Update duration from actual file
                         const tempAudio = new Audio();
                         tempAudio.src = blobUrl;
                         tempAudio.addEventListener('loadedmetadata', () => {
                             if (tempAudio.duration && isFinite(tempAudio.duration)) {
                                 playlist[i].duration = formatTime(tempAudio.duration);
                                 renderPlaylist();
+                                if (currentIndex === i && audio.src === blobUrl) totalDurationSpan.textContent = playlist[i].duration;
                             }
                         });
                         assignIndex++;
@@ -457,15 +480,17 @@
             if (playlist.length && !audio.src && playlist[0].fileUrl) {
                 loadTrack(0);
             }
+            if (assignIndex === 0 && files.length > 0) {
+                alert("All songs already have audio files assigned. Remove some first if you want to replace.");
+            }
         }
 
-        // FIXED: Use the pre‑provided URL from songList
-        function initPlaylistFromList() {
-            playlist = songList.map(song => ({
+        function initPlaylistFromMetadata() {
+            playlist = songMetadata.map(song => ({
                 title: song.title,
                 artist: song.artist,
                 duration: song.duration,
-                fileUrl: song.url || null   // now the URLs are used!
+                fileUrl: song.url || null   // use the Google Drive link for "altogether"
             }));
             totalSongsCountSpan.innerText = playlist.length;
             renderPlaylist();
@@ -475,7 +500,7 @@
                 currentSongArtistSpan.textContent = playlist[0].artist;
             } else {
                 currentSongTitleSpan.textContent = "select a song";
-                currentSongArtistSpan.textContent = "click any track, then add MP3";
+                currentSongArtistSpan.textContent = "click 'Add MP3 files' to add music";
             }
         }
 
@@ -533,7 +558,7 @@
         function start() {
             initBars();
             initEvents();
-            initPlaylistFromList();
+            initPlaylistFromMetadata();
             updateVolume();
             if (!audioContext) {
                 document.body.addEventListener('click', function initCtx() {
