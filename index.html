@@ -3,351 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>heartfelt mixtape · for you</title>
+    <title>Poppylist · instant mixtape</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="manifest" href="manifest.json">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
-        body {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #0a0806, #1a120b, #0a0806);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        .player-container {
-            width: 860px;
-            max-width: 100%;
-            background: linear-gradient(145deg, #0a0806, #1a120b);
-            border-radius: 32px;
-            box-shadow: 0 0 0 4px #000, 0 25px 45px rgba(0, 0, 0, 0.9), 0 0 15px rgba(169, 113, 66, 0.3);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            color: #f5f5dc;
-            border: 1px solid #000;
-        }
-        .player-main {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 20px;
-            gap: 20px;
-        }
-        .player-left {
-            flex: 1.2;
-            min-width: 240px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .player-right {
-            flex: 2;
-            min-width: 260px;
-            background: rgba(10, 8, 6, 0.7);
-            border-radius: 24px;
-            backdrop-filter: blur(2px);
-            overflow: hidden;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 5px 15px rgba(0,0,0,0.6);
-            display: flex;
-            flex-direction: column;
-        }
-        .header {
-            background: linear-gradient(to bottom, #0a0806, #1a120b);
-            padding: 16px 20px;
-            text-align: center;
-            border-bottom: 1px solid rgba(0,0,0,0.7);
-            position: relative;
-        }
-        .header h1 {
-            font-size: 1.7rem;
-            letter-spacing: 2px;
-            color: #e6d5b8;
-            text-shadow: 0 0 10px rgba(169, 113, 66, 0.5);
-            font-weight: 600;
-        }
-        .header p {
-            font-size: 0.8rem;
-            color: #d4a373;
-        }
-        .now-playing-indicator {
-            position: absolute;
-            top: 12px;
-            right: 20px;
-            background: rgba(212, 163, 115, 0.25);
-            padding: 4px 12px;
-            border-radius: 40px;
-            font-size: 0.7rem;
-            font-weight: 500;
-            backdrop-filter: blur(4px);
-        }
-        .album-art {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            max-width: 240px;
-            margin: 0 auto;
-            border-radius: 50%;
-            background: radial-gradient(circle, #2a1e12, #050302);
-            box-shadow: 0 0 25px rgba(0,0,0,0.8);
-            border: 2px solid rgba(0,0,0,0.6);
-            overflow: hidden;
-        }
-        .album-art-inner {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle at 30% 30%, #2c1f12, #0a0603);
-            color: #d4a373;
-            font-size: 1rem;
-            font-weight: 500;
-            text-align: center;
-            padding: 20px;
-        }
-        .visualizer {
-            background: rgba(0,0,0,0.4);
-            border-radius: 40px;
-            padding: 12px 8px;
-            border: 1px solid rgba(169,113,66,0.3);
-        }
-        .bars {
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            gap: 5px;
-            height: 70px;
-        }
-        .bar {
-            width: 6px;
-            background: linear-gradient(to top, #8b5a2b, #e6b87e);
-            border-radius: 6px;
-            transition: height 0.08s ease;
-        }
-        .song-info {
-            background: rgba(0,0,0,0.35);
-            padding: 12px;
-            border-radius: 20px;
-            text-align: center;
-        }
-        .song-info h2 {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: #f3e5c0;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .song-info p {
-            font-size: 0.85rem;
-            color: #d4a373;
-        }
-        .progress-container {
-            width: 100%;
-            height: 6px;
-            background: #2a2018;
-            border-radius: 10px;
-            cursor: pointer;
-            margin: 10px 0 5px;
-        }
-        .progress {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #b87c41, #e6b87e);
-            border-radius: 10px;
-        }
-        .time {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.75rem;
-            color: #bc9a6b;
-        }
-        .controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 18px;
-            margin: 10px 0;
-        }
-        .control-btn {
-            background: linear-gradient(145deg, #0a0806, #1a120b);
-            border: none;
-            color: #e6d5b8;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.6);
-            transition: 0.2s;
-            font-size: 1.2rem;
-        }
-        .play-btn {
-            width: 58px;
-            height: 58px;
-            background: linear-gradient(145deg, #2c1e12, #8b5a2b);
-            font-size: 1.7rem;
-            box-shadow: 0 0 12px rgba(169,113,66,0.5);
-        }
-        .control-btn:hover {
-            transform: scale(1.05);
-            background: #2c1e12;
-        }
-        .volume-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            justify-content: center;
-            margin: 8px 0 5px;
-        }
-        .volume-slider {
-            width: 130px;
-            -webkit-appearance: none;
-            background: #2a1c10;
-            height: 4px;
-            border-radius: 4px;
-        }
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 12px;
-            height: 12px;
-            background: #e6b87e;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        .playlist-header {
-            display: flex;
-            justify-content: space-between;
-            padding: 14px 18px;
-            background: rgba(0,0,0,0.6);
-            font-weight: 600;
-            border-bottom: 1px solid #2c1f12;
-        }
-        .playlist-actions {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-        .upload-btn {
-            background: #8b5a2b;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 40px;
-            color: white;
-            font-weight: 500;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .upload-btn:hover {
-            background: #b87c41;
-        }
-        .playlist {
-            flex: 1;
-            overflow-y: auto;
-            max-height: 380px;
-        }
-        .playlist-item {
-            display: flex;
-            align-items: center;
-            padding: 12px 18px;
-            border-bottom: 1px solid rgba(0,0,0,0.4);
-            cursor: pointer;
-            gap: 12px;
-            transition: 0.1s;
-        }
-        .playlist-item.active {
-            background: rgba(139, 90, 43, 0.35);
-            border-left: 3px solid #e6b87e;
-        }
-        .song-title-artist {
-            flex: 1;
-            overflow: hidden;
-        }
-        .song-title-artist .title {
-            font-weight: 500;
-            font-size: 0.9rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        .song-title-artist .artist {
-            font-size: 0.7rem;
-            color: #bc9a6b;
-        }
-        .edit-song, .remove-song {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        body { min-height: 100vh; background: linear-gradient(135deg, #0a0806, #1a120b, #0a0806); display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .player-container { width: 860px; max-width: 100%; background: linear-gradient(145deg, #0a0806, #1a120b); border-radius: 32px; box-shadow: 0 0 0 4px #000, 0 25px 45px rgba(0, 0, 0, 0.9), 0 0 15px rgba(169, 113, 66, 0.3); overflow: hidden; display: flex; flex-direction: column; color: #f5f5dc; border: 1px solid #000; }
+        .player-main { display: flex; flex-wrap: wrap; padding: 20px; gap: 20px; }
+        .player-left { flex: 1.2; min-width: 240px; display: flex; flex-direction: column; gap: 20px; }
+        .player-right { flex: 2; min-width: 260px; background: rgba(10, 8, 6, 0.7); border-radius: 24px; backdrop-filter: blur(2px); overflow: hidden; box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 5px 15px rgba(0,0,0,0.6); display: flex; flex-direction: column; }
+        .header { background: linear-gradient(to bottom, #0a0806, #1a120b); padding: 16px 20px; text-align: center; border-bottom: 1px solid rgba(0,0,0,0.7); position: relative; }
+        .header h1 { font-size: 1.7rem; letter-spacing: 2px; color: #e6d5b8; text-shadow: 0 0 10px rgba(169, 113, 66, 0.5); font-weight: 600; }
+        .header p { font-size: 0.8rem; color: #d4a373; }
+        .now-playing-indicator { position: absolute; top: 12px; right: 20px; background: rgba(212, 163, 115, 0.25); padding: 4px 12px; border-radius: 40px; font-size: 0.7rem; font-weight: 500; backdrop-filter: blur(4px); }
+        .album-art { width: 100%; aspect-ratio: 1 / 1; max-width: 240px; margin: 0 auto; border-radius: 50%; background: radial-gradient(circle, #2a1e12, #050302); box-shadow: 0 0 25px rgba(0,0,0,0.8); border: 2px solid rgba(0,0,0,0.6); overflow: hidden; }
+        .album-art-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 30% 30%, #2c1f12, #0a0603); color: #d4a373; font-size: 1rem; font-weight: 500; text-align: center; padding: 20px; }
+        .visualizer { background: rgba(0,0,0,0.4); border-radius: 40px; padding: 12px 8px; border: 1px solid rgba(169,113,66,0.3); }
+        .bars { display: flex; align-items: flex-end; justify-content: center; gap: 5px; height: 70px; }
+        .bar { width: 6px; background: linear-gradient(to top, #8b5a2b, #e6b87e); border-radius: 6px; transition: height 0.08s ease; }
+        .song-info { background: rgba(0,0,0,0.35); padding: 12px; border-radius: 20px; text-align: center; }
+        .song-info h2 { font-size: 1.2rem; font-weight: 500; color: #f3e5c0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .song-info p { font-size: 0.85rem; color: #d4a373; }
+        .progress-container { width: 100%; height: 6px; background: #2a2018; border-radius: 10px; cursor: pointer; margin: 10px 0 5px; }
+        .progress { height: 100%; width: 0%; background: linear-gradient(90deg, #b87c41, #e6b87e); border-radius: 10px; }
+        .time { display: flex; justify-content: space-between; font-size: 0.75rem; color: #bc9a6b; }
+        .controls { display: flex; justify-content: center; align-items: center; gap: 18px; margin: 10px 0; }
+        .control-btn { background: linear-gradient(145deg, #0a0806, #1a120b); border: none; color: #e6d5b8; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.6); transition: 0.2s; font-size: 1.2rem; }
+        .play-btn { width: 58px; height: 58px; background: linear-gradient(145deg, #2c1e12, #8b5a2b); font-size: 1.7rem; box-shadow: 0 0 12px rgba(169,113,66,0.5); }
+        .control-btn:hover { transform: scale(1.05); background: #2c1e12; }
+        .volume-container { display: flex; align-items: center; gap: 12px; justify-content: center; margin: 8px 0 5px; }
+        .volume-slider { width: 130px; -webkit-appearance: none; background: #2a1c10; height: 4px; border-radius: 4px; }
+        .volume-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; background: #e6b87e; border-radius: 50%; cursor: pointer; }
+        .playlist-header { display: flex; justify-content: space-between; padding: 14px 18px; background: rgba(0,0,0,0.6); font-weight: 600; border-bottom: 1px solid #2c1f12; }
+        .playlist-actions { display: flex; gap: 12px; align-items: center; }
+        .upload-btn { background: #8b5a2b; border: none; padding: 8px 14px; border-radius: 40px; color: white; font-weight: 500; font-size: 0.8rem; cursor: pointer; transition: 0.2s; }
+        .upload-btn:hover { background: #b87c41; }
+        .playlist { flex: 1; overflow-y: auto; max-height: 380px; }
+        .playlist-item { display: flex; align-items: center; padding: 12px 18px; border-bottom: 1px solid rgba(0,0,0,0.4); cursor: pointer; gap: 12px; transition: 0.1s; }
+        .playlist-item.active { background: rgba(139, 90, 43, 0.35); border-left: 3px solid #e6b87e; }
+        .song-title-artist { flex: 1; overflow: hidden; }
+        .song-title-artist .title { font-weight: 500; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .song-title-artist .artist { font-size: 0.7rem; color: #bc9a6b; }
+        .edit-song, .remove-song { background: none; border: none; cursor: pointer; font-size: 0.9rem; }
         .edit-song { color: #d4a373; margin: 0 4px; }
         .remove-song { color: #b35f2b; font-size: 1rem; }
-        .duration {
-            font-size: 0.75rem;
-            color: #a57447;
-            width: 50px;
-            text-align: right;
-        }
-        .footer {
-            text-align: center;
-            font-size: 0.7rem;
-            padding: 12px;
-            color: #7a5a3a;
-            border-top: 1px solid #000;
-        }
-        .player-stats {
-            display: flex;
-            justify-content: space-around;
-            background: rgba(0,0,0,0.3);
-            border-radius: 28px;
-            padding: 8px;
-            margin-top: 4px;
-        }
+        .duration { font-size: 0.75rem; color: #a57447; width: 50px; text-align: right; }
+        .footer { text-align: center; font-size: 0.7rem; padding: 12px; color: #7a5a3a; border-top: 1px solid #000; }
+        .player-stats { display: flex; justify-content: space-around; background: rgba(0,0,0,0.3); border-radius: 28px; padding: 8px; margin-top: 4px; }
         .stat-item { text-align: center; }
         .stat-value { font-weight: 600; color: #e6d5b8; }
-        .empty-playlist-msg {
-            text-align: center;
-            padding: 40px 20px;
-            color: #bc9a6b;
-            font-style: italic;
-        }
+        .empty-playlist-msg { text-align: center; padding: 40px 20px; color: #bc9a6b; font-style: italic; }
     </style>
 </head>
 <body>
 <div class="player-container">
     <div class="header">
         <h1>❤️ POPPYLIST · MIXTAPE</h1>
-        <p>handpicked for you · 30 tracks</p>
+        <p>handpicked for you · 34 tracks</p>
         <div class="now-playing-indicator">♫ NOW PLAYING</div>
     </div>
 
     <div class="player-main">
         <div class="player-left">
             <div class="album-art">
-                <div class="album-art-inner" id="albumTextPlaceholder">
-                    🎵 for you<br>with love
-                </div>
+                <div class="album-art-inner" id="albumTextPlaceholder">🎵 for you<br>with love</div>
             </div>
-            <div class="visualizer">
-                <div class="bars" id="visualizerBars"></div>
-            </div>
+            <div class="visualizer"><div class="bars" id="visualizerBars"></div></div>
             <div class="song-info">
                 <h2 id="currentSongTitle">select a song</h2>
                 <p id="currentSongArtist">── click any track ──</p>
             </div>
-            <div class="progress-container" id="progressContainer">
-                <div class="progress" id="progressFill"></div>
-            </div>
-            <div class="time">
-                <span id="currentTime">0:00</span>
-                <span id="totalDuration">0:00</span>
-            </div>
+            <div class="progress-container" id="progressContainer"><div class="progress" id="progressFill"></div></div>
+            <div class="time"><span id="currentTime">0:00</span><span id="totalDuration">0:00</span></div>
             <div class="controls">
                 <button class="control-btn" id="prevBtn"><i class="fas fa-step-backward"></i></button>
                 <button class="control-btn play-btn" id="playPauseBtn"><i class="fas fa-play"></i></button>
@@ -362,7 +91,7 @@
                 <i class="fas fa-volume-up"></i>
             </div>
             <div class="player-stats">
-                <div class="stat-item"><span class="stat-value" id="totalSongsCount">30</span><div class="stat-label">SONGS</div></div>
+                <div class="stat-item"><span class="stat-value" id="totalSongsCount">34</span><div class="stat-label">SONGS</div></div>
                 <div class="stat-item"><span class="stat-value">❤️</span><div class="stat-label">your mix</div></div>
             </div>
         </div>
@@ -375,52 +104,53 @@
                     <button class="upload-btn" id="addSongsBtn"><i class="fas fa-plus-circle"></i> Add MP3 files</button>
                 </div>
             </div>
-            <div class="playlist" id="playlistContainer">
-            </div>
+            <div class="playlist" id="playlistContainer"></div>
         </div>
     </div>
-    <div class="footer">♡ custom mixtape · upload your own MP3 files to match each song · edit titles/artists with ✎</div>
+    <div class="footer">♡ custom mixtape · songs load instantly from GitHub</div>
     <audio id="audioPlayer" preload="metadata"></audio>
 </div>
 
 <script>
     (function() {
-       const songList = [
-    { title: "altogether", artist: "duster", duration: "5:20", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/Altogether.mp3" },
-    { title: "anhedonia", artist: "duster", duration: "3:15", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/anhedonia.mp3" },
-    { title: "aqua tofana", artist: "duster", duration: "3:42", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/aquatofana.mp3" },
-    { title: "black lace", artist: "duster", duration: "3:18", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/blacklace.mp3" },
-    { title: "bye", artist: "starry cat", duration: "2:55", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/bye.mp3" },
-    { title: "close to home", artist: "duster", duration: "2:45", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/closetohome.mp3" },
-    { title: "cosmotransporter", artist: "duster", duration: "4:05", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/cosmotransporter.mp3" },
-    { title: "always forever", artist: "cults", duration: "3:50", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/alwaysforever.mp3" },
-    { title: "diamond", artist: "duster", duration: "4:05", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/diamond.mp3" },
-    { title: "baking tapes", artist: "duster", duration: "2:30", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/bakingtapes.mp3" },
-    { title: "new directions", artist: "duster", duration: "3:35", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/newdirections.mp3" },
-    { title: "i just want to hold her", artist: "sign crushes motorist", duration: "2:38", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/ijustwantholdher.mp3" },
-    { title: "i'm always here", artist: "sign crushes motorist", duration: "2:45", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/imalwayshere.mp3" },
-    { title: "inside out", artist: "duster", duration: "3:20", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/insideout.mp3" },
-    { title: "isn't over", artist: "duster", duration: "3:12", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/isntover.mp3" },
-    { title: "junk shop", artist: "helvetia", duration: "3:25", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/junkshop.mp3" },
-    { title: "liftoff in stereo", artist: "duster", duration: "4:45", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/liftoffinstereo.mp3" },
-    { title: "like a movie", artist: "duster", duration: "4:22", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/likeamovie.mp3" },
-    { title: "me and the birds", artist: "duster", duration: "3:45", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/meandthebirds.mp3" },
-    { title: "no feel", artist: "duster", duration: "3:08", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/nofeel.mp3" },
-    { title: "perdido de amor (lost in love)", artist: "luiz bonfá", duration: "4:15", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/perdidodeamor.mp3" },
-    { title: "poltergeist", artist: "duster", duration: "3:40", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/poltergeist.mp3" },
-    { title: "quiet eyes", artist: "duster", duration: "2:55", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/quieteyes.mp3" },
-    { title: "sea, swallow me", artist: "cocteau twins", duration: "4:10", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/seaswallowme.mp3" },
-    { title: "selfless", artist: "widowdusk", duration: "4:12", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/selfless.mp3" },
-    { title: "space trash", artist: "duster", duration: "3:55", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/spacetrash.mp3" },
-    { title: "possession (quiet)", artist: "starry cat", duration: "3:48", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/possessionquiet.mp3" },
-    { title: "starting to fall", artist: "duster", duration: "3:00", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/startingtofall.mp3" },
-    { title: "the rodents' discussion", artist: "gavin m", duration: "3:28", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/rodentsdiscussion.mp3" },
-    { title: "wedding night", artist: "sign crushes motorist", duration: "2:50", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/weddingnight.mp3" },
-    { title: "Я тебя люблю", artist: "Где Фантом", duration: "3:15", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/yatebyalyublyu.mp3" },
-    { title: "Где-то далеко", artist: "Иосиф Кобзон", duration: "3:55", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/gdetodaleko.mp3" },
-    { title: "И на Марсе будут яблони цвести", artist: "Иосиф Кобзон", duration: "4:05", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/inamarse.mp3" },
-    { title: "Милая моя", artist: "Юрий Визбор", duration: "3:10", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/milayamoya.mp3" }
-];
+        // ---------- YOUR SONGS WITH DIRECT RAW GITHUB URLs ----------
+        const songList = [
+            { title: "altogether", artist: "duster", duration: "5:20", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/Altogether.mp3" },
+            { title: "anhedonia", artist: "duster", duration: "3:15", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/anhedonia.mp3" },
+            { title: "aqua tofana", artist: "duster", duration: "3:42", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/aquatofana.mp3" },
+            { title: "black lace", artist: "duster", duration: "3:18", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/blacklace.mp3" },
+            { title: "bye", artist: "starry cat", duration: "2:55", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/bye.mp3" },
+            { title: "close to home", artist: "duster", duration: "2:45", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/closetohome.mp3" },
+            { title: "cosmotransporter", artist: "duster", duration: "4:05", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/cosmotransporter.mp3" },
+            { title: "always forever", artist: "cults", duration: "3:50", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/alwaysforever.mp3" },
+            { title: "diamond", artist: "duster", duration: "4:05", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/diamond.mp3" },
+            { title: "baking tapes", artist: "duster", duration: "2:30", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/bakingtapes.mp3" },
+            { title: "new directions", artist: "duster", duration: "3:35", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/newdirections.mp3" },
+            { title: "i just want to hold her", artist: "sign crushes motorist", duration: "2:38", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/ijustwantholdher.mp3" },
+            { title: "i'm always here", artist: "sign crushes motorist", duration: "2:45", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/imalwayshere.mp3" },
+            { title: "inside out", artist: "duster", duration: "3:20", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/insideout.mp3" },
+            { title: "isn't over", artist: "duster", duration: "3:12", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/isntover.mp3" },
+            { title: "junk shop", artist: "helvetia", duration: "3:25", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/junkshop.mp3" },
+            { title: "liftoff in stereo", artist: "duster", duration: "4:45", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/liftoffinstereo.mp3" },
+            { title: "like a movie", artist: "duster", duration: "4:22", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/likeamovie.mp3" },
+            { title: "me and the birds", artist: "duster", duration: "3:45", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/meandthebirds.mp3" },
+            { title: "no feel", artist: "duster", duration: "3:08", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/nofeel.mp3" },
+            { title: "perdido de amor (lost in love)", artist: "luiz bonfá", duration: "4:15", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/perdidodeamor.mp3" },
+            { title: "poltergeist", artist: "duster", duration: "3:40", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/poltergeist.mp3" },
+            { title: "quiet eyes", artist: "duster", duration: "2:55", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/quieteyes.mp3" },
+            { title: "sea, swallow me", artist: "cocteau twins", duration: "4:10", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/seaswallowme.mp3" },
+            { title: "selfless", artist: "widowdusk", duration: "4:12", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/selfless.mp3" },
+            { title: "space trash", artist: "duster", duration: "3:55", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/spacetrash.mp3" },
+            { title: "possession (quiet)", artist: "starry cat", duration: "3:48", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/possessionquiet.mp3" },
+            { title: "starting to fall", artist: "duster", duration: "3:00", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/startingtofall.mp3" },
+            { title: "the rodents' discussion", artist: "gavin m", duration: "3:28", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/rodentsdiscussion.mp3" },
+            { title: "wedding night", artist: "sign crushes motorist", duration: "2:50", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/weddingnight.mp3" },
+            { title: "Я тебя люблю", artist: "Где Фантом", duration: "3:15", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/yatebyalyublyu.mp3" },
+            { title: "Где-то далеко", artist: "Иосиф Кобзон", duration: "3:55", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/gdetodaleko.mp3" },
+            { title: "И на Марсе будут яблони цвести", artist: "Иосиф Кобзон", duration: "4:05", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/inamarse.mp3" },
+            { title: "Милая моя", artist: "Юрий Визбор", duration: "3:10", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/milayamoya.mp3" }
+        ];
+
         // DOM elements
         const audio = document.getElementById('audioPlayer');
         const playPauseBtn = document.getElementById('playPauseBtn');
@@ -442,7 +172,7 @@
         const albumTextDiv = document.getElementById('albumTextPlaceholder');
 
         // Player state
-        let playlist = [];        // will hold song objects with fileUrl (blob) after user adds MP3s
+        let playlist = [];
         let currentIndex = 0;
         let isPlaying = false;
         let shuffleMode = false;
@@ -503,7 +233,6 @@
             else if (!audioContext) { setupAudioContext(); audioContext?.resume(); }
         }
 
-        // ---------- Media Session API (lock screen controls) ----------
         function updateMediaSession() {
             if (!('mediaSession' in navigator)) return;
             if (!playlist.length || !playlist[currentIndex]) return;
@@ -515,8 +244,6 @@
             });
         }
 
-        // Wrap the original loadTrack to update media session
-        const originalLoadTrack = loadTrack;
         function loadTrack(index) {
             if (!playlist.length || index < 0 || index >= playlist.length) return false;
             const track = playlist[index];
@@ -544,7 +271,12 @@
         }
 
         async function playCurrent() {
-            if (!playlist.length) return;
+            if (!playlist.length || !playlist[currentIndex]?.fileUrl) {
+                if (playlist[currentIndex] && !playlist[currentIndex].fileUrl) {
+                    alert(`No audio URL for "${playlist[currentIndex].title}". Please check the song list.`);
+                }
+                return;
+            }
             resumeAudioContext();
             try {
                 await audio.play();
@@ -607,11 +339,10 @@
 
         function updateVolume() { audio.volume = volumeSlider.value / 100; }
 
-        // Render playlist from the `playlist` array (with fileUrl or placeholder)
         function renderPlaylist() {
             playlistDiv.innerHTML = '';
             if (playlist.length === 0) {
-                playlistDiv.innerHTML = '<div class="empty-playlist-msg">🎵 click "Add MP3 files" and select your downloaded songs 🎵<br>match each file to the titles below</div>';
+                playlistDiv.innerHTML = '<div class="empty-playlist-msg">🎵 No songs loaded</div>';
                 totalSongsCountSpan.innerText = '0';
                 return;
             }
@@ -630,11 +361,11 @@
                 `;
                 item.addEventListener('click', (e) => {
                     if (e.target.closest('.edit-song') || e.target.closest('.remove-song')) return;
-                    if (track.fileUrl && track.fileUrl.startsWith('blob:')) {
+                    if (track.fileUrl && (track.fileUrl.startsWith('http') || track.fileUrl.startsWith('blob:'))) {
                         loadTrack(idx);
                         if (!isPlaying) playCurrent(); else playCurrent();
                     } else {
-                        alert(`🎵 Please add the MP3 file for "${track.title}" first.\nClick "Add MP3 files" and select the correct audio file.`);
+                        alert(`🎵 No playable URL for "${track.title}". Please check the song list.`);
                     }
                 });
                 playlistDiv.appendChild(item);
@@ -673,9 +404,6 @@
         function handleRemove(e) {
             e.stopPropagation();
             const idx = parseInt(e.currentTarget.getAttribute('data-idx'));
-            if (playlist[idx].fileUrl && playlist[idx].fileUrl.startsWith('blob:')) {
-                URL.revokeObjectURL(playlist[idx].fileUrl);
-            }
             const wasPlaying = isPlaying && currentIndex === idx;
             if (wasPlaying) pauseCurrent();
             playlist.splice(idx, 1);
@@ -703,12 +431,12 @@
             });
         }
 
-        // When user adds MP3 files, match them to the existing song list by order or by filename
+        // Optional manual file upload (kept as fallback)
         function addSongsFromFiles(files) {
             if (!files.length || !playlist.length) return;
             let assignIndex = 0;
             for (let i = 0; i < playlist.length && assignIndex < files.length; i++) {
-                if (!playlist[i].fileUrl || !playlist[i].fileUrl.startsWith('blob:')) {
+                if (!playlist[i].fileUrl || !playlist[i].fileUrl.startsWith('http')) {
                     const file = files[assignIndex];
                     if (file.type.includes('audio')) {
                         if (playlist[i].fileUrl && playlist[i].fileUrl.startsWith('blob:')) URL.revokeObjectURL(playlist[i].fileUrl);
@@ -732,18 +460,24 @@
             }
         }
 
-        // Initialize the playlist with song titles/artists (no fileUrl yet)
+        // FIXED: Use the pre‑provided URL from songList
         function initPlaylistFromList() {
             playlist = songList.map(song => ({
                 title: song.title,
                 artist: song.artist,
                 duration: song.duration,
-                fileUrl: null
+                fileUrl: song.url || null   // now the URLs are used!
             }));
             totalSongsCountSpan.innerText = playlist.length;
             renderPlaylist();
-            currentSongTitleSpan.textContent = "select a song";
-            currentSongArtistSpan.textContent = "click any track, then add MP3";
+            if (playlist.length && playlist[0].fileUrl) {
+                loadTrack(0);
+                currentSongTitleSpan.textContent = playlist[0].title;
+                currentSongArtistSpan.textContent = playlist[0].artist;
+            } else {
+                currentSongTitleSpan.textContent = "select a song";
+                currentSongArtistSpan.textContent = "click any track, then add MP3";
+            }
         }
 
         function toggleShuffle() {
@@ -751,7 +485,6 @@
             shuffleBtn.style.boxShadow = shuffleMode ? "0 0 8px #d4a373" : "";
         }
 
-        // Event listeners
         function initEvents() {
             playPauseBtn.addEventListener('click', togglePlayPause);
             prevBtn.addEventListener('click', prevTrack);
@@ -778,8 +511,6 @@
                 if (e.target.files.length) addSongsFromFiles(Array.from(e.target.files));
                 songFileInput.value = '';
             });
-
-            // Register media session action handlers
             if ('mediaSession' in navigator) {
                 navigator.mediaSession.setActionHandler('play', () => playCurrent());
                 navigator.mediaSession.setActionHandler('pause', () => pauseCurrent());
