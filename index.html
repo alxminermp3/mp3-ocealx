@@ -113,11 +113,9 @@
 
 <script>
     (function() {
-        // ---------- SONG METADATA ----------
-        // The first song (altogether) now includes a direct Google Drive link.
-        // All other songs have no URL – they can be added via the "Add MP3 files" button.
+        // ---------- SONG METADATA (Titles, Artists, Durations) ----------
         const songMetadata = [
-            { title: "altogether", artist: "duster", duration: "5:20", url: "https://drive.usercontent.google.com/download?id=1_7PnxT_CjH0fVDILFGAk__LWVkMVw8CC&export=download" },
+            { title: "altogether", artist: "duster", duration: "5:20" },
             { title: "anhedonia", artist: "duster", duration: "3:15" },
             { title: "aqua tofana", artist: "duster", duration: "3:42" },
             { title: "black lace", artist: "duster", duration: "3:18" },
@@ -451,7 +449,7 @@
                     title: song.title,
                     artist: song.artist,
                     duration: song.duration,
-                    fileUrl: song.url || null   // pre-assign URL if exists (e.g., for "altogether")
+                    fileUrl: null
                 }));
             }
             let assignIndex = 0;
@@ -490,18 +488,12 @@
                 title: song.title,
                 artist: song.artist,
                 duration: song.duration,
-                fileUrl: song.url || null   // use the Google Drive link for "altogether"
+                fileUrl: null
             }));
             totalSongsCountSpan.innerText = playlist.length;
             renderPlaylist();
-            if (playlist.length && playlist[0].fileUrl) {
-                loadTrack(0);
-                currentSongTitleSpan.textContent = playlist[0].title;
-                currentSongArtistSpan.textContent = playlist[0].artist;
-            } else {
-                currentSongTitleSpan.textContent = "select a song";
-                currentSongArtistSpan.textContent = "click 'Add MP3 files' to add music";
-            }
+            currentSongTitleSpan.textContent = "select a song";
+            currentSongArtistSpan.textContent = "click 'Add MP3 files' to add music";
         }
 
         function toggleShuffle() {
