@@ -113,15 +113,43 @@
 
 <script>
     (function() {
-        // ---------- YOUR SONGS WITH DIRECT RAW GITHUB URLs ----------
         const songList = [
-            const songList = [
-    { 
-        title: "И на Марсе будут яблони цвести", 
-        artist: "Иосиф Кобзон", 
-        duration: "4:05", 
-        url: "https://sndup.net/http://sndup.net/c4423"
-    },
+            { title: "altogether", artist: "duster", duration: "5:20", url: "https://drive.usercontent.google.com/download?id=1_7PnxT_CjH0fVDILFGAk__LWVkMVw8CC&export=download" },
+            { title: "anhedonia", artist: "duster", duration: "3:15", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/anhedonia.mp3" },
+            { title: "aqua tofana", artist: "duster", duration: "3:42", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/aquatofana.mp3" },
+            { title: "black lace", artist: "duster", duration: "3:18", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/blacklace.mp3" },
+            { title: "bye", artist: "starry cat", duration: "2:55", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/bye.mp3" },
+            { title: "close to home", artist: "duster", duration: "2:45", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/closetohome.mp3" },
+            { title: "cosmotransporter", artist: "duster", duration: "4:05", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/cosmotransporter.mp3" },
+            { title: "always forever", artist: "cults", duration: "3:50", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/alwaysforever.mp3" },
+            { title: "diamond", artist: "duster", duration: "4:05", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/diamond.mp3" },
+            { title: "baking tapes", artist: "duster", duration: "2:30", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/bakingtapes.mp3" },
+            { title: "new directions", artist: "duster", duration: "3:35", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/newdirections.mp3" },
+            { title: "i just want to hold her", artist: "sign crushes motorist", duration: "2:38", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/ijustwantholdher.mp3" },
+            { title: "i'm always here", artist: "sign crushes motorist", duration: "2:45", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/imalwayshere.mp3" },
+            { title: "inside out", artist: "duster", duration: "3:20", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/insideout.mp3" },
+            { title: "isn't over", artist: "duster", duration: "3:12", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/isntover.mp3" },
+            { title: "junk shop", artist: "helvetia", duration: "3:25", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/junkshop.mp3" },
+            { title: "liftoff in stereo", artist: "duster", duration: "4:45", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/liftoffinstereo.mp3" },
+            { title: "like a movie", artist: "duster", duration: "4:22", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/likeamovie.mp3" },
+            { title: "me and the birds", artist: "duster", duration: "3:45", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/meandthebirds.mp3" },
+            { title: "no feel", artist: "duster", duration: "3:08", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/nofeel.mp3" },
+            { title: "perdido de amor (lost in love)", artist: "luiz bonfá", duration: "4:15", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/perdidodeamor.mp3" },
+            { title: "poltergeist", artist: "duster", duration: "3:40", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/poltergeist.mp3" },
+            { title: "quiet eyes", artist: "duster", duration: "2:55", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/quieteyes.mp3" },
+            { title: "sea, swallow me", artist: "cocteau twins", duration: "4:10", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/seaswallowme.mp3" },
+            { title: "selfless", artist: "widowdusk", duration: "4:12", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/selfless.mp3" },
+            { title: "space trash", artist: "duster", duration: "3:55", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/spacetrash.mp3" },
+            { title: "possession (quiet)", artist: "starry cat", duration: "3:48", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/possessionquiet.mp3" },
+            { title: "starting to fall", artist: "duster", duration: "3:00", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/startingtofall.mp3" },
+            { title: "the rodents' discussion", artist: "gavin m", duration: "3:28", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/rodentsdiscussion.mp3" },
+            { title: "wedding night", artist: "sign crushes motorist", duration: "2:50", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/weddingnight.mp3" },
+            { title: "Я тебя люблю", artist: "Где Фантом", duration: "3:15", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/yatebyalyublyu.mp3" },
+            { title: "Где-то далеко", artist: "Иосиф Кобзон", duration: "3:55", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/gdetodaleko.mp3" },
+            { title: "И на Марсе будут яблони цвести", artist: "Иосиф Кобзон", duration: "4:05", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/inamarse.mp3" },
+            { title: "Милая моя", artist: "Юрий Визбор", duration: "3:10", url: "https://raw.githubusercontent.com/alxminermp3/mp3-ocealx/main/milayamoya.mp3" }
+        ];
+
         // DOM elements
         const audio = document.getElementById('audioPlayer');
         const playPauseBtn = document.getElementById('playPauseBtn');
