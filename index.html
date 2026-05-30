@@ -107,48 +107,48 @@
             <div class="playlist" id="playlistContainer"></div>
         </div>
     </div>
-    <div class="footer">♡ custom mixtape · songs are built into the app</div>
+    <div class="footer">♡ custom mixtape · Click "Add MP3 files" and select your downloaded songs (they will match the titles in order).</div>
     <audio id="audioPlayer" preload="metadata"></audio>
 </div>
 
 <script>
     (function() {
-        // ---------- SONG METADATA WITH LOCAL PATHS (for Android APK) ----------
+        // ---------- SONG METADATA (titles only – no URLs) ----------
         const songMetadata = [
-            { title: "altogether", artist: "duster", duration: "5:20", localPath: "assets/altogether.mp3" },
-            { title: "anhedonia", artist: "duster", duration: "3:15", localPath: "assets/anhedonia.mp3" },
-            { title: "aqua tofana", artist: "duster", duration: "3:42", localPath: "assets/aquatofana.mp3" },
-            { title: "black lace", artist: "duster", duration: "3:18", localPath: "assets/blacklace.mp3" },
-            { title: "bye", artist: "starry cat", duration: "2:55", localPath: "assets/bye.mp3" },
-            { title: "close to home", artist: "duster", duration: "2:45", localPath: "assets/closetohome.mp3" },
-            { title: "cosmotransporter", artist: "duster", duration: "4:05", localPath: "assets/cosmotransporter.mp3" },
-            { title: "always forever", artist: "cults", duration: "3:50", localPath: "assets/alwaysforever.mp3" },
-            { title: "diamond", artist: "duster", duration: "4:05", localPath: "assets/diamond.mp3" },
-            { title: "baking tapes", artist: "duster", duration: "2:30", localPath: "assets/bakingtapes.mp3" },
-            { title: "new directions", artist: "duster", duration: "3:35", localPath: "assets/newdirections.mp3" },
-            { title: "i just want to hold her", artist: "sign crushes motorist", duration: "2:38", localPath: "assets/ijustwantholdher.mp3" },
-            { title: "i'm always here", artist: "sign crushes motorist", duration: "2:45", localPath: "assets/imalwayshere.mp3" },
-            { title: "inside out", artist: "duster", duration: "3:20", localPath: "assets/insideout.mp3" },
-            { title: "isn't over", artist: "duster", duration: "3:12", localPath: "assets/isntover.mp3" },
-            { title: "junk shop", artist: "helvetia", duration: "3:25", localPath: "assets/junkshop.mp3" },
-            { title: "liftoff in stereo", artist: "duster", duration: "4:45", localPath: "assets/liftoffinstereo.mp3" },
-            { title: "like a movie", artist: "duster", duration: "4:22", localPath: "assets/likeamovie.mp3" },
-            { title: "me and the birds", artist: "duster", duration: "3:45", localPath: "assets/meandthebirds.mp3" },
-            { title: "no feel", artist: "duster", duration: "3:08", localPath: "assets/nofeel.mp3" },
-            { title: "perdido de amor (lost in love)", artist: "luiz bonfá", duration: "4:15", localPath: "assets/perdidodeamor.mp3" },
-            { title: "poltergeist", artist: "duster", duration: "3:40", localPath: "assets/poltergeist.mp3" },
-            { title: "quiet eyes", artist: "duster", duration: "2:55", localPath: "assets/quieteyes.mp3" },
-            { title: "sea, swallow me", artist: "cocteau twins", duration: "4:10", localPath: "assets/seaswallowme.mp3" },
-            { title: "selfless", artist: "widowdusk", duration: "4:12", localPath: "assets/selfless.mp3" },
-            { title: "space trash", artist: "duster", duration: "3:55", localPath: "assets/spacetrash.mp3" },
-            { title: "possession (quiet)", artist: "starry cat", duration: "3:48", localPath: "assets/possessionquiet.mp3" },
-            { title: "starting to fall", artist: "duster", duration: "3:00", localPath: "assets/startingtofall.mp3" },
-            { title: "the rodents' discussion", artist: "gavin m", duration: "3:28", localPath: "assets/rodentsdiscussion.mp3" },
-            { title: "wedding night", artist: "sign crushes motorist", duration: "2:50", localPath: "assets/weddingnight.mp3" },
-            { title: "Я тебя люблю", artist: "Где Фантом", duration: "3:15", localPath: "assets/yatebyalyublyu.mp3" },
-            { title: "Где-то далеко", artist: "Иосиф Кобзон", duration: "3:55", localPath: "assets/gdetodaleko.mp3" },
-            { title: "И на Марсе будут яблони цвести", artist: "Иосиф Кобзон", duration: "4:05", localPath: "assets/inamarse.mp3" },
-            { title: "Милая моя", artist: "Юрий Визбор", duration: "3:10", localPath: "assets/milayamoya.mp3" }
+            { title: "altogether", artist: "duster", duration: "5:20" },
+            { title: "anhedonia", artist: "duster", duration: "3:15" },
+            { title: "aqua tofana", artist: "duster", duration: "3:42" },
+            { title: "black lace", artist: "duster", duration: "3:18" },
+            { title: "bye", artist: "starry cat", duration: "2:55" },
+            { title: "close to home", artist: "duster", duration: "2:45" },
+            { title: "cosmotransporter", artist: "duster", duration: "4:05" },
+            { title: "always forever", artist: "cults", duration: "3:50" },
+            { title: "diamond", artist: "duster", duration: "4:05" },
+            { title: "baking tapes", artist: "duster", duration: "2:30" },
+            { title: "new directions", artist: "duster", duration: "3:35" },
+            { title: "i just want to hold her", artist: "sign crushes motorist", duration: "2:38" },
+            { title: "i'm always here", artist: "sign crushes motorist", duration: "2:45" },
+            { title: "inside out", artist: "duster", duration: "3:20" },
+            { title: "isn't over", artist: "duster", duration: "3:12" },
+            { title: "junk shop", artist: "helvetia", duration: "3:25" },
+            { title: "liftoff in stereo", artist: "duster", duration: "4:45" },
+            { title: "like a movie", artist: "duster", duration: "4:22" },
+            { title: "me and the birds", artist: "duster", duration: "3:45" },
+            { title: "no feel", artist: "duster", duration: "3:08" },
+            { title: "perdido de amor (lost in love)", artist: "luiz bonfá", duration: "4:15" },
+            { title: "poltergeist", artist: "duster", duration: "3:40" },
+            { title: "quiet eyes", artist: "duster", duration: "2:55" },
+            { title: "sea, swallow me", artist: "cocteau twins", duration: "4:10" },
+            { title: "selfless", artist: "widowdusk", duration: "4:12" },
+            { title: "space trash", artist: "duster", duration: "3:55" },
+            { title: "possession (quiet)", artist: "starry cat", duration: "3:48" },
+            { title: "starting to fall", artist: "duster", duration: "3:00" },
+            { title: "the rodents' discussion", artist: "gavin m", duration: "3:28" },
+            { title: "wedding night", artist: "sign crushes motorist", duration: "2:50" },
+            { title: "Я тебя люблю", artist: "Где Фантом", duration: "3:15" },
+            { title: "Где-то далеко", artist: "Иосиф Кобзон", duration: "3:55" },
+            { title: "И на Марсе будут яблони цвести", artist: "Иосиф Кобзон", duration: "4:05" },
+            { title: "Милая моя", artist: "Юрий Визбор", duration: "3:10" }
         ];
 
         // DOM elements
@@ -248,16 +248,8 @@
             if (!playlist.length || index < 0 || index >= playlist.length) return false;
             const track = playlist[index];
             currentIndex = index;
-            // Convert local path to a full URL if needed (for Android asset)
-            let fileUrl = track.fileUrl;
-            if (fileUrl && !fileUrl.startsWith('http') && !fileUrl.startsWith('blob:')) {
-                // For Android WebView, assets are accessible via '/android_asset/'
-                // But if running locally or in browser, it will try relative path.
-                // For APK, we will ensure the files are placed in assets folder.
-                fileUrl = fileUrl;
-            }
-            if (audio.src !== fileUrl) {
-                audio.src = fileUrl;
+            if (audio.src !== track.fileUrl) {
+                audio.src = track.fileUrl;
                 audio.load();
             }
             currentSongTitleSpan.textContent = track.title;
@@ -285,7 +277,7 @@
             }
             const track = playlist[currentIndex];
             if (!track.fileUrl) {
-                alert(`No audio file for "${track.title}". Make sure the MP3 files are in the app's assets folder.`);
+                alert(`No audio file for "${track.title}". Click 'Add MP3 files' and select your MP3s.`);
                 return;
             }
             resumeAudioContext();
@@ -297,7 +289,7 @@
                 updateMediaSession();
             } catch(e) {
                 console.warn(e);
-                alert("Playback failed. Make sure the MP3 files are inside the app.");
+                alert("Playback failed. Make sure you have selected valid MP3 files.");
             }
         }
 
@@ -356,7 +348,7 @@
         function renderPlaylist() {
             playlistDiv.innerHTML = '';
             if (playlist.length === 0) {
-                playlistDiv.innerHTML = '<div class="empty-playlist-msg">✨ No songs found. Make sure the app was built with MP3 files in the assets folder. ✨</div>';
+                playlistDiv.innerHTML = '<div class="empty-playlist-msg">✨ Click "Add MP3 files" and select your downloaded songs ✨<br>The titles will match automatically in order.</div>';
                 totalSongsCountSpan.innerText = '0';
                 return;
             }
@@ -379,7 +371,7 @@
                         loadTrack(idx);
                         if (!isPlaying) playCurrent(); else playCurrent();
                     } else {
-                        alert(`🎵 No audio file for "${track.title}".`);
+                        alert(`🎵 No audio file for "${track.title}". Click "Add MP3 files" to assign music.`);
                     }
                 });
                 playlistDiv.appendChild(item);
@@ -418,6 +410,9 @@
         function handleRemove(e) {
             e.stopPropagation();
             const idx = parseInt(e.currentTarget.getAttribute('data-idx'));
+            if (playlist[idx].fileUrl && playlist[idx].fileUrl.startsWith('blob:')) {
+                URL.revokeObjectURL(playlist[idx].fileUrl);
+            }
             const wasPlaying = isPlaying && currentIndex === idx;
             if (wasPlaying) pauseCurrent();
             playlist.splice(idx, 1);
@@ -445,7 +440,7 @@
             });
         }
 
-        // Fallback: user can still add files manually (optional)
+        // Add MP3 files from user's device
         function addSongsFromFiles(files) {
             if (!files.length) return;
             if (playlist.length === 0) {
@@ -461,6 +456,7 @@
                 if (!playlist[i].fileUrl) {
                     const file = files[assignIndex];
                     if (file.type.includes('audio')) {
+                        if (playlist[i].fileUrl && playlist[i].fileUrl.startsWith('blob:')) URL.revokeObjectURL(playlist[i].fileUrl);
                         const blobUrl = URL.createObjectURL(file);
                         playlist[i].fileUrl = blobUrl;
                         const tempAudio = new Audio();
@@ -479,26 +475,22 @@
             if (playlist.length && !audio.src && playlist[0].fileUrl) {
                 loadTrack(0);
             }
+            if (assignIndex === 0 && files.length > 0) {
+                alert("All songs already have audio files assigned. Remove some first if you want to replace.");
+            }
         }
 
-        // Initialize playlist from metadata (using local paths)
-        function initPlaylistFromList() {
+        function initPlaylistFromMetadata() {
             playlist = songMetadata.map(song => ({
                 title: song.title,
                 artist: song.artist,
                 duration: song.duration,
-                fileUrl: song.localPath || null
+                fileUrl: null
             }));
             totalSongsCountSpan.innerText = playlist.length;
             renderPlaylist();
-            if (playlist.length && playlist[0].fileUrl) {
-                loadTrack(0);
-                currentSongTitleSpan.textContent = playlist[0].title;
-                currentSongArtistSpan.textContent = playlist[0].artist;
-            } else {
-                currentSongTitleSpan.textContent = "select a song";
-                currentSongArtistSpan.textContent = "click 'Add MP3 files' to add music";
-            }
+            currentSongTitleSpan.textContent = "select a song";
+            currentSongArtistSpan.textContent = "click 'Add MP3 files' to add music";
         }
 
         function toggleShuffle() {
@@ -555,7 +547,7 @@
         function start() {
             initBars();
             initEvents();
-            initPlaylistFromList();
+            initPlaylistFromMetadata();
             updateVolume();
             if (!audioContext) {
                 document.body.addEventListener('click', function initCtx() {
