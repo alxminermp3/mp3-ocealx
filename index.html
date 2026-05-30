@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>heartfelt mixtape · for you</title>
+    <title>poppylist · music for the heart</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -321,8 +321,8 @@
 <body>
 <div class="player-container">
     <div class="header">
-        <h1>❤️ POPPYLIST · MIXTAPE</h1>
-        <p>handpicked for you · 30 tracks</p>
+        <h1>🎵 poppylist</h1>
+        <p>poppylist · your personal collection</p>
         <div class="now-playing-indicator">♫ NOW PLAYING</div>
     </div>
 
@@ -330,7 +330,7 @@
         <div class="player-left">
             <div class="album-art">
                 <div class="album-art-inner" id="albumTextPlaceholder">
-                    🎵 for you<br>with love
+                    🎧 poppylist<br>⋆｡°✩
                 </div>
             </div>
             <div class="visualizer">
@@ -362,7 +362,7 @@
             </div>
             <div class="player-stats">
                 <div class="stat-item"><span class="stat-value" id="totalSongsCount">30</span><div class="stat-label">SONGS</div></div>
-                <div class="stat-item"><span class="stat-value">❤️</span><div class="stat-label">your mix</div></div>
+                <div class="stat-item"><span class="stat-value">❤️</span><div class="stat-label">poppylist</div></div>
             </div>
         </div>
 
@@ -379,7 +379,7 @@
             </div>
         </div>
     </div>
-    <div class="footer">♡ custom mixtape · upload your own MP3 files to match each song · edit titles/artists with ✎</div>
+    <div class="footer">♡ poppylist · upload your own MP3 files to match each song · edit titles/artists with ✎</div>
     <audio id="audioPlayer" preload="metadata"></audio>
 </div>
 
@@ -513,7 +513,7 @@
             navigator.mediaSession.metadata = new MediaMetadata({
                 title: track.title,
                 artist: track.artist,
-                album: 'Heart Collection'
+                album: 'poppylist · heart session'
             });
         }
 
@@ -686,7 +686,7 @@
                 audio.src = '';
                 currentSongTitleSpan.textContent = 'no songs';
                 currentSongArtistSpan.textContent = 'add MP3 files';
-                albumTextDiv.innerHTML = '🎵❤️ add music';
+                albumTextDiv.innerHTML = '🎵 poppylist ⋆｡°✩';
                 if ('mediaSession' in navigator) navigator.mediaSession.metadata = null;
             } else {
                 if (currentIndex >= idx) currentIndex = Math.max(0, currentIndex - 1);
@@ -746,6 +746,7 @@
             renderPlaylist();
             currentSongTitleSpan.textContent = "select a song";
             currentSongArtistSpan.textContent = "click any track, then add MP3";
+            albumTextDiv.innerHTML = "🎧 poppylist<br>⋆｡°✩";
         }
 
         function toggleShuffle() {
