@@ -2,22 +2,20 @@
   "name": "Poppylist Music Player",
   "short_name": "Poppylist",
   "description": "Handpicked mixtape for you",
-  "start_url": "/mp3-ocealx/"
+  "start_url": "/mp3-ocealx/",
   "display": "standalone",
   "theme_color": "#1a120b",
   "background_color": "#0a0806",
   "icons": [
     {
-      "src": "launchericon-192x192.png",
+      "src": "https://alxminermp3.github.io/mp3-ocealx/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
-      "src": "launchericon-512x512.png",
+      "src": "https://alxminermp3.github.io/mp3-ocealx/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ]
 }
